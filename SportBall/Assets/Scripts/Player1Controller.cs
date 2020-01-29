@@ -25,6 +25,13 @@ public class Player1Controller : MonoBehaviour {
     public AudioSource jumpSound;
     public AudioSource BallHit;
 
+    public GameObject punchObj;
+    public GameObject circlePushObj;
+
+    public bool hasAtkd = false;
+    public int AtkDir;
+
+    public bool circleATK = false;
 
     //Not public so we can't change it in the inspector
     float xSpeed = 0f;
@@ -32,6 +39,8 @@ public class Player1Controller : MonoBehaviour {
 	// Use this for initialization
 	void Start()
 	{
+        punchObj.SetActive(false);
+        circlePushObj.SetActive(false);
 		jumpTimeCounter = jumpTime;
 
 		myRigidbody = GetComponent<Rigidbody2D>();
@@ -46,7 +55,7 @@ public class Player1Controller : MonoBehaviour {
 
 		myRigidbody.velocity = new Vector2(Speed, myRigidbody.velocity.y);
 
-		if (Input.GetKeyDown("w"))
+		if (Input.GetKeyDown("space"))
 		{
             jumpSound.Play();
 
@@ -55,7 +64,7 @@ public class Player1Controller : MonoBehaviour {
 				myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, JumpHeight);
 			}
 		}
-		if (Input.GetKey("w"))
+		if (Input.GetKey("space"))
 		{
 			if (jumpTimeCounter > 0)
 			{
@@ -64,16 +73,44 @@ public class Player1Controller : MonoBehaviour {
 				jumpTimeCounter -= Time.deltaTime;
 			}
 		}
-		if (Input.GetKeyUp("w"))
+		if (Input.GetKeyUp("space"))
 		{
 			jumpTimeCounter = 0;
 		}
 		if (grounded || grounded2)
 		{
 			jumpTimeCounter = jumpTime;
+            hasAtkd = false;
 		}
 
-	}
+        if(grounded == false && grounded == false)
+        {
+            if(Input.GetKeyDown("space"))
+            {
+                if (!hasAtkd)
+                {
+                    AtkDir = 0;
+                    circleATK = true;
+                    StartCoroutine(Attack(AtkDir));
+                    hasAtkd = true;
+                }
+            }
+        }
+
+        if (circleATK)
+        {
+            circlePushObj.SetActive(true);
+            circlePushObj.transform.localScale = new Vector2(circlePushObj.transform.localScale.x + 0.075f, circlePushObj.transform.localScale.y + 0.075f);
+            if(circlePushObj.transform.localScale.x >= 2f)
+            {
+                circleATK = false;
+            }
+        } else
+        {
+            circlePushObj.transform.localScale = new Vector2(0, 0);
+            circlePushObj.SetActive(false);
+        }
+    }
 
 
 
@@ -124,6 +161,16 @@ public class Player1Controller : MonoBehaviour {
         {
             GetComponent<Transform>().position = new Vector2(0, 0);
         }
+    }
+
+    public IEnumerator Attack(int AtkDir)
+    {
+        //Debug.Log(AtkDir);
+        //if (AtkDir == 0)
+        //{
+        yield return new WaitForSeconds(0.1f);
+        //    circleATK = false;
+        //}
     }
 }
 
