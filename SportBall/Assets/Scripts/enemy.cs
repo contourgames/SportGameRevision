@@ -17,18 +17,7 @@ public class enemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (TB.transform.position.y >= transform.position.y) {
-			dir = true;
-		} 
-		if (BB.transform.position.y <= transform.position.y) {
-			dir = false;
-		} 
-		if (dir) {
-			rig.velocity = new Vector2 (0, 4f); 
-		}
-		if (!dir) { 
-			rig.velocity = new Vector2 (0, -4f);
-		}
+		
 	}
 
 }

@@ -18,15 +18,19 @@ public class Ball : MonoBehaviour {
     public ParticleSystem LeftGoal;
     public ParticleSystem RightGoal;
 
+    //public bool enteredGate = false;
+
     // Use this for initialization
     void Start () {
-		
 
+        //Time.timeScale = 1;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-       LeftscoreText.text = "" + LeftScore;
+        //Debug.Log(Time.timeScale);
+
+        LeftscoreText.text = "" + LeftScore;
        RightscoreText.text = "" + RightScore; 
 
         if(LeftScore == 5)
@@ -59,10 +63,12 @@ public class Ball : MonoBehaviour {
             Invoke("SceneLoad", 0.5f);
             dParticlesRight();
         }
+
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        //Debug.Log("collide");
         if (collision.gameObject.tag == "Front Plat")
         {
             ballWall.Play();
@@ -71,6 +77,14 @@ public class Ball : MonoBehaviour {
         {
             GetComponent<Transform>().position = new Vector2(0,0);
         }
+        
+    }
+
+
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+       
     }
  
 

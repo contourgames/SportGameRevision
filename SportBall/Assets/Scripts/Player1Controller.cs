@@ -25,26 +25,22 @@ public class Player1Controller : MonoBehaviour {
     public AudioSource jumpSound;
     public AudioSource BallHit;
 
-    public GameObject punchObj;
-    public GameObject circlePushObj;
+    public float prepBlastVal;
 
-    public bool hasAtkd = false;
-    public int AtkDir;
+    public int atkDir;
+    public bool hasAtkd;
 
-    public bool circleATK = false;
 
     //Not public so we can't change it in the inspector
-    float xSpeed = 0f;
 
 	// Use this for initialization
 	void Start()
 	{
-        punchObj.SetActive(false);
-        circlePushObj.SetActive(false);
-		jumpTimeCounter = jumpTime;
+       
+		//jumpTimeCounter = jumpTime;
 
 		myRigidbody = GetComponent<Rigidbody2D>();
-
+        atkDir = 0;
 	}
 
 
@@ -53,104 +49,166 @@ public class Player1Controller : MonoBehaviour {
 	void Update()
 	{
 
-		myRigidbody.velocity = new Vector2(Speed, myRigidbody.velocity.y);
-
-		if (Input.GetKeyDown("space"))
-		{
-            jumpSound.Play();
-
-            if (grounded || grounded2)
-			{
-				myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, JumpHeight);
-			}
-		}
-		if (Input.GetKey("space"))
-		{
-			if (jumpTimeCounter > 0)
-			{
-
-				myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, JumpHeight);
-				jumpTimeCounter -= Time.deltaTime;
-			}
-		}
-		if (Input.GetKeyUp("space"))
-		{
-			jumpTimeCounter = 0;
-		}
-		if (grounded || grounded2)
-		{
-			jumpTimeCounter = jumpTime;
-            hasAtkd = false;
-		}
-
-        if(grounded == false && grounded == false)
+        #region Movement
+        if (Input.GetKey("s") && hasAtkd == false)
         {
-            if(Input.GetKeyDown("space"))
+            if (prepBlastVal <= 15)
             {
-                if (!hasAtkd)
-                {
-                    AtkDir = 0;
-                    circleATK = true;
-                    StartCoroutine(Attack(AtkDir));
-                    hasAtkd = true;
-                }
+                prepBlastVal = prepBlastVal + 0.1f;
             }
         }
-
-        if (circleATK)
+        else if (Input.GetKeyUp("s"))
         {
-            circlePushObj.SetActive(true);
-            circlePushObj.transform.localScale = new Vector2(circlePushObj.transform.localScale.x + 0.075f, circlePushObj.transform.localScale.y + 0.075f);
-            if(circlePushObj.transform.localScale.x >= 2f)
-            {
-                circleATK = false;
-            }
-        } else
-        {
-            circlePushObj.transform.localScale = new Vector2(0, 0);
-            circlePushObj.SetActive(false);
+            myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, myRigidbody.velocity.y + prepBlastVal);
+            //prepBlastVal = 0;
+            atkDir = 6;
         }
+
+        if (Input.GetKey("a")&& hasAtkd == false)
+        {
+            if (prepBlastVal <= 15)
+            {
+                prepBlastVal = prepBlastVal + 0.1f;
+            }
+        }
+        else if (Input.GetKeyUp("a"))
+        {
+            myRigidbody.velocity = new Vector2(myRigidbody.velocity.x + prepBlastVal, myRigidbody.velocity.y + 0.5f);
+            //prepBlastVal = 0;
+            atkDir = 9;
+        }
+
+        if (Input.GetKey("d") && hasAtkd == false)
+        {
+            if (prepBlastVal <= 15)
+            {
+                prepBlastVal = prepBlastVal + 0.1f;
+            }
+        }
+        else if (Input.GetKeyUp("d"))
+        {
+            myRigidbody.velocity = new Vector2(myRigidbody.velocity.x - prepBlastVal, myRigidbody.velocity.y + 0.5f);
+            //prepBlastVal = 0;
+            atkDir = 3;
+        }
+
+        if (Input.GetKey("w") && hasAtkd == false)
+        {
+            if (prepBlastVal <= 15)
+            {
+                prepBlastVal = prepBlastVal + 0.1f;
+            }
+        }
+        else if (Input.GetKeyUp("w"))
+        {
+            myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, myRigidbody.velocity.y - prepBlastVal);
+            //prepBlastVal = 0;
+            atkDir = 12;
+        }
+        #endregion
+
+
+
+
+        #region old code 
+        //myRigidbody.velocity = new Vector2(Speed, myRigidbody.velocity.y);
+
+
+        //if(Input.GetKey("space"))
+        //{
+        //    if (grounded)
+        //    {
+        //        jumpTimeCounter = jumpTime;
+        //        jumpSound.Play();
+
+        //    }
+        //    if(jumpTimeCounter > 0)
+        //    {
+        //    myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, JumpHeight);
+        //    }
+        //    jumpTimeCounter -= Time.deltaTime;
+        //}
+
+
+
+        //if (Input.GetKeyUp("space"))
+        //{
+        //    jumpTimeCounter = 0;
+        //}
+
+        //if (Input.GetKeyDown("space"))
+        //      {
+        //          if (grounded)
+        //	{
+        //		
+        //              jumpSound.Play();
+        //          }
+        //}
+        //if (Input.GetKey("space"))
+        //{
+        //	if (jumpTimeCounter > 0)
+        //	{
+        //		myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, JumpHeight);
+        //		jumpTimeCounter -= Time.deltaTime;
+        //	}
+        //}
+        //if (Input.GetKeyUp("space") && grounded)
+        //{
+        //	jumpTimeCounter = 0;
+        //}
+        //if (grounded)
+        //{
+        //	jumpTimeCounter = jumpTime;
+        //          hasAtkd = false;
+        //}
+
+        #endregion
+
+
     }
 
 
 
-	void FixedUpdate()
+    void FixedUpdate()
 	{
+        #region old code
+        //if (Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround) != null)
+        //{
+        //	grounded = true;
+        //}
+        //else
+        //{
+        //	grounded = false;
+        //}
 
-		if (Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround) != null)
-		{
-			grounded = true;
-		}
-		else
-		{
-			grounded = false;
-		}
-
-        if (Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround2) != null)
-        {
-            grounded2 = true;
-        }
-        else
-        {
-            grounded2 = false;
-        }
+        //if (Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround2) != null)
+        //{
+        //    grounded2 = true;
+        //}
+        //else
+        //{
+        //    grounded2 = false;
+        //}
 
 
-        if (Input.GetKey("d"))
-		{
-			xSpeed = Speed;
-		}
-		else if (Input.GetKey("a"))
-		{
-			xSpeed = -Speed;
-		}
-		else
-		{
-			xSpeed = 0;
-		}
-		//you're basically setting the speed of the jump which starts at 0f meaning it stays on the ground and up to 5f which is up in the air
-		GetComponent<Rigidbody2D>().velocity = new Vector2(xSpeed, GetComponent<Rigidbody2D>().velocity.y);
-	}
+
+        //      if (Input.GetKey("d"))
+        //{
+        //	xSpeed = Speed;
+        //}
+        //else if (Input.GetKey("a"))
+        //{
+        //	xSpeed = -Speed;
+        //}
+        //else
+        //{
+        //	xSpeed = 0;
+        //}
+        //you're basically setting the speed of the jump which starts at 0f meaning it stays on the ground and up to 5f which is up in the air
+        //GetComponent<Rigidbody2D>().velocity = new Vector2(xSpeed, GetComponent<Rigidbody2D>().velocity.y);
+
+        #endregion
+    }
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ball")
@@ -163,15 +221,7 @@ public class Player1Controller : MonoBehaviour {
         }
     }
 
-    public IEnumerator Attack(int AtkDir)
-    {
-        //Debug.Log(AtkDir);
-        //if (AtkDir == 0)
-        //{
-        yield return new WaitForSeconds(0.1f);
-        //    circleATK = false;
-        //}
-    }
+  
 }
 
 
