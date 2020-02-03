@@ -49,65 +49,127 @@ public class Player1Controller : MonoBehaviour {
 	void Update()
 	{
 
-        #region Movement
-        if (Input.GetKey("s") && hasAtkd == false)
+        #region Movement 1
+        if (gameObject.tag == "Player1")
         {
-            if (prepBlastVal <= 15)
+            if (Input.GetKey("s") && hasAtkd == false)
             {
-                prepBlastVal = prepBlastVal + 0.1f;
+                if (prepBlastVal <= 15)
+                {
+                    prepBlastVal = prepBlastVal + 0.1f;
+                }
             }
-        }
-        else if (Input.GetKeyUp("s"))
-        {
-            myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, myRigidbody.velocity.y + prepBlastVal);
-            //prepBlastVal = 0;
-            atkDir = 6;
-        }
+            else if (Input.GetKeyUp("s"))
+            {
+                myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, myRigidbody.velocity.y + prepBlastVal);
+                //prepBlastVal = 0;
+                atkDir = 6;
+            }
 
-        if (Input.GetKey("a")&& hasAtkd == false)
-        {
-            if (prepBlastVal <= 15)
+            if (Input.GetKey("a") && hasAtkd == false)
             {
-                prepBlastVal = prepBlastVal + 0.1f;
+                if (prepBlastVal <= 15)
+                {
+                    prepBlastVal = prepBlastVal + 0.1f;
+                }
             }
-        }
-        else if (Input.GetKeyUp("a"))
-        {
-            myRigidbody.velocity = new Vector2(myRigidbody.velocity.x + prepBlastVal, myRigidbody.velocity.y + 0.5f);
-            //prepBlastVal = 0;
-            atkDir = 9;
-        }
+            else if (Input.GetKeyUp("a"))
+            {
+                myRigidbody.velocity = new Vector2(myRigidbody.velocity.x + prepBlastVal, myRigidbody.velocity.y + 0.5f);
+                //prepBlastVal = 0;
+                atkDir = 9;
+            }
 
-        if (Input.GetKey("d") && hasAtkd == false)
-        {
-            if (prepBlastVal <= 15)
+            if (Input.GetKey("d") && hasAtkd == false)
             {
-                prepBlastVal = prepBlastVal + 0.1f;
+                if (prepBlastVal <= 15)
+                {
+                    prepBlastVal = prepBlastVal + 0.1f;
+                }
             }
-        }
-        else if (Input.GetKeyUp("d"))
-        {
-            myRigidbody.velocity = new Vector2(myRigidbody.velocity.x - prepBlastVal, myRigidbody.velocity.y + 0.5f);
-            //prepBlastVal = 0;
-            atkDir = 3;
-        }
+            else if (Input.GetKeyUp("d"))
+            {
+                myRigidbody.velocity = new Vector2(myRigidbody.velocity.x - prepBlastVal, myRigidbody.velocity.y + 0.5f);
+                //prepBlastVal = 0;
+                atkDir = 3;
+            }
 
-        if (Input.GetKey("w") && hasAtkd == false)
-        {
-            if (prepBlastVal <= 15)
+            if (Input.GetKey("w") && hasAtkd == false)
             {
-                prepBlastVal = prepBlastVal + 0.1f;
+                if (prepBlastVal <= 15)
+                {
+                    prepBlastVal = prepBlastVal + 0.1f;
+                }
             }
-        }
-        else if (Input.GetKeyUp("w"))
-        {
-            myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, myRigidbody.velocity.y - prepBlastVal);
-            //prepBlastVal = 0;
-            atkDir = 12;
+            else if (Input.GetKeyUp("w"))
+            {
+                myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, myRigidbody.velocity.y - prepBlastVal);
+                //prepBlastVal = 0;
+                atkDir = 12;
+            }
         }
         #endregion
 
+        #region Movement 2
+        if (gameObject.tag == "Player2")
+        {
+            if (Input.GetKey(KeyCode.DownArrow) && hasAtkd == false)
+            {
+                if (prepBlastVal <= 15)
+                {
+                    prepBlastVal = prepBlastVal + 0.1f;
+                }
+            }
+            else if (Input.GetKeyUp(KeyCode.DownArrow))
+            {
+                myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, myRigidbody.velocity.y + prepBlastVal);
+                //prepBlastVal = 0;
+                atkDir = 6;
+            }
 
+            if (Input.GetKey(KeyCode.LeftArrow) && hasAtkd == false)
+            {
+                if (prepBlastVal <= 15)
+                {
+                    prepBlastVal = prepBlastVal + 0.1f;
+                }
+            }
+            else if (Input.GetKeyUp(KeyCode.LeftArrow))
+            {
+                myRigidbody.velocity = new Vector2(myRigidbody.velocity.x + prepBlastVal, myRigidbody.velocity.y + 0.5f);
+                //prepBlastVal = 0;
+                atkDir = 9;
+            }
+
+            if (Input.GetKey(KeyCode.RightArrow) && hasAtkd == false)
+            {
+                if (prepBlastVal <= 15)
+                {
+                    prepBlastVal = prepBlastVal + 0.1f;
+                }
+            }
+            else if (Input.GetKeyUp(KeyCode.RightArrow))
+            {
+                myRigidbody.velocity = new Vector2(myRigidbody.velocity.x - prepBlastVal, myRigidbody.velocity.y + 0.5f);
+                //prepBlastVal = 0;
+                atkDir = 3;
+            }
+
+            if (Input.GetKey(KeyCode.UpArrow) && hasAtkd == false)
+            {
+                if (prepBlastVal <= 15)
+                {
+                    prepBlastVal = prepBlastVal + 0.1f;
+                }
+            }
+            else if (Input.GetKeyUp(KeyCode.UpArrow))
+            {
+                myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, myRigidbody.velocity.y - prepBlastVal);
+                //prepBlastVal = 0;
+                atkDir = 12;
+            }
+        }
+        #endregion
 
 
         #region old code 
