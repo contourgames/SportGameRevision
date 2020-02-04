@@ -12,11 +12,11 @@ public class Ball : MonoBehaviour {
     public static int RightScore = 0;
     public Text RightscoreText;
 
-    public AudioSource goalSound;
-    public AudioSource ballWall;
+    //public AudioSource goalSound;
+    //public AudioSource ballWall;
 
-    public ParticleSystem LeftGoal;
-    public ParticleSystem RightGoal;
+    //public ParticleSystem LeftGoal;
+    //public ParticleSystem RightGoal;
 
     //public bool enteredGate = false;
 
@@ -48,8 +48,7 @@ public class Ball : MonoBehaviour {
     {
         if(collision.gameObject.tag == "LeftGoal")
         {
-            goalSound.Play();
-            GetComponent<CircleCollider2D>().enabled = false;
+            //GetComponent<CircleCollider2D>().enabled = false;
             LeftScore = LeftScore + 1;
             Invoke("SceneLoad", 0.5f);
             dParticlesLeft();
@@ -57,8 +56,7 @@ public class Ball : MonoBehaviour {
 
         if (collision.gameObject.tag == "RightGoal")
         {
-            goalSound.Play();
-            GetComponent<CircleCollider2D>().enabled = false;
+            //GetComponent<CircleCollider2D>().enabled = false;
             RightScore = RightScore + 1;
             Invoke("SceneLoad", 0.5f);
             dParticlesRight();
@@ -71,13 +69,28 @@ public class Ball : MonoBehaviour {
         //Debug.Log("collide");
         if (collision.gameObject.tag == "Front Plat")
         {
-            ballWall.Play();
         }
         if (collision.gameObject.tag == "OutOfBounds")
         {
             GetComponent<Transform>().position = new Vector2(0,0);
         }
-        
+        if (collision.gameObject.tag == "LeftGoal")
+        {
+            //GetComponent<CircleCollider2D>().enabled = false;
+            LeftScore = LeftScore + 1;
+            //Invoke("SceneLoad", 0.5f);
+            dParticlesLeft();
+            Destroy(gameObject);
+        }
+
+        if (collision.gameObject.tag == "RightGoal")
+        {
+            //GetComponent<CircleCollider2D>().enabled = false;
+            RightScore = RightScore + 1;
+            //Invoke("SceneLoad", 0.5f);
+            Destroy(gameObject);
+            dParticlesRight();
+        }
     }
 
 
@@ -95,11 +108,11 @@ public class Ball : MonoBehaviour {
 
     void dParticlesLeft()
     {
-        LeftGoal.Play();
+        //LeftGoal.Play();
     }
     void dParticlesRight()
     {
-        RightGoal.Play();
+       // RightGoal.Play();
     }
 
 }

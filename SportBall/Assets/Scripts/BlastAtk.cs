@@ -30,7 +30,8 @@ public class BlastAtk : MonoBehaviour
         else if (playerScript.atkDir == 3)
         {
             StartCoroutine(resetAtk());
-            transform.localScale = new Vector2(0.5f, 1 + (playerScript.prepBlastVal / 5));
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
+            transform.localScale = new Vector2(0.75f, 0.1f +(playerScript.prepBlastVal / 20));
             BlastVel = 7.5f + (playerScript.prepBlastVal / 1.5f);
             GetComponent<Rigidbody2D>().velocity = new Vector2(BlastVel, 0);
             //transform.position = new Vector2(transform.position.x + BlastVel, transform.position.y);
@@ -38,7 +39,8 @@ public class BlastAtk : MonoBehaviour
         else if (playerScript.atkDir == 6)
         {
             StartCoroutine(resetAtk());
-            transform.localScale = new Vector2(1f + (playerScript.prepBlastVal / 5), 0.5f);
+            transform.localRotation = Quaternion.Euler(0, 0, -90);
+            transform.localScale = new Vector2(0.75f, 0.1f + (playerScript.prepBlastVal / 20));
             BlastVel = 7.5f + (playerScript.prepBlastVal / 1.5f);
             GetComponent<Rigidbody2D>().velocity = new Vector2(0, -BlastVel);
             //transform.position = new Vector2(transform.position.x, transform.position.y - BlastVel);
@@ -46,7 +48,8 @@ public class BlastAtk : MonoBehaviour
         else if (playerScript.atkDir == 9)
         {
             StartCoroutine(resetAtk());
-            transform.localScale = new Vector2(0.5f, 1 + (playerScript.prepBlastVal / 5));
+            transform.localRotation = Quaternion.Euler(0, 0,180);
+            transform.localScale = new Vector2(0.75f, 0.1f + (playerScript.prepBlastVal / 20));
             BlastVel = 7.5f + (playerScript.prepBlastVal / 1.5f);
             GetComponent<Rigidbody2D>().velocity = new Vector2(-BlastVel, 0);
 
@@ -55,7 +58,8 @@ public class BlastAtk : MonoBehaviour
         else if (playerScript.atkDir == 12)
         {
             StartCoroutine(resetAtk());
-            transform.localScale = new Vector2(1 + (playerScript.prepBlastVal / 5), 0.5f);
+            transform.localRotation = Quaternion.Euler(0, 0, 90);
+            transform.localScale = new Vector2(0.75f, 0.1f + (playerScript.prepBlastVal / 20));
             BlastVel = 7.5f + (playerScript.prepBlastVal/ 1.5f);
             GetComponent<Rigidbody2D>().velocity = new Vector2(0, BlastVel);
 
