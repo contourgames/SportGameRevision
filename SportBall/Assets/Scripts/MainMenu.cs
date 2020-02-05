@@ -9,8 +9,7 @@ public class MainMenu : MonoBehaviour {
 	public void PlayGame()
 	{
 		Application.LoadLevel (playGameLevel);
-        Ball.LeftScore = 0;
-        Ball.RightScore = 0;
+
 	}
 
 

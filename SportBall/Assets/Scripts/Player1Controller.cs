@@ -36,7 +36,8 @@ public class Player1Controller : MonoBehaviour {
 	// Use this for initialization
 	void Start()
 	{
-       
+        PlayerPrefs.SetInt("LeftScore", 0);
+        PlayerPrefs.SetInt("RightScore", 0);
 		//jumpTimeCounter = jumpTime;
 
 		myRigidbody = GetComponent<Rigidbody2D>();
@@ -56,7 +57,7 @@ public class Player1Controller : MonoBehaviour {
             {
                 if (prepBlastVal <= 15)
                 {
-                    prepBlastVal = prepBlastVal + 0.1f;
+                    prepBlastVal = prepBlastVal + 0.15f;
                 }
             }
             else if (Input.GetKeyUp("s"))
@@ -70,7 +71,7 @@ public class Player1Controller : MonoBehaviour {
             {
                 if (prepBlastVal <= 15)
                 {
-                    prepBlastVal = prepBlastVal + 0.1f;
+                    prepBlastVal = prepBlastVal + 0.15f;
                 }
             }
             else if (Input.GetKeyUp("a"))
@@ -84,7 +85,7 @@ public class Player1Controller : MonoBehaviour {
             {
                 if (prepBlastVal <= 15)
                 {
-                    prepBlastVal = prepBlastVal + 0.1f;
+                    prepBlastVal = prepBlastVal + 0.15f;
                 }
             }
             else if (Input.GetKeyUp("d"))
@@ -98,7 +99,7 @@ public class Player1Controller : MonoBehaviour {
             {
                 if (prepBlastVal <= 15)
                 {
-                    prepBlastVal = prepBlastVal + 0.1f;
+                    prepBlastVal = prepBlastVal + 0.15f;
                 }
             }
             else if (Input.GetKeyUp("w"))
@@ -117,7 +118,7 @@ public class Player1Controller : MonoBehaviour {
             {
                 if (prepBlastVal <= 15)
                 {
-                    prepBlastVal = prepBlastVal + 0.1f;
+                    prepBlastVal = prepBlastVal + 0.15f;
                 }
             }
             else if (Input.GetKeyUp(KeyCode.DownArrow))
@@ -131,7 +132,7 @@ public class Player1Controller : MonoBehaviour {
             {
                 if (prepBlastVal <= 15)
                 {
-                    prepBlastVal = prepBlastVal + 0.1f;
+                    prepBlastVal = prepBlastVal + 0.15f;
                 }
             }
             else if (Input.GetKeyUp(KeyCode.LeftArrow))
@@ -145,7 +146,7 @@ public class Player1Controller : MonoBehaviour {
             {
                 if (prepBlastVal <= 15)
                 {
-                    prepBlastVal = prepBlastVal + 0.1f;
+                    prepBlastVal = prepBlastVal + 0.15f;
                 }
             }
             else if (Input.GetKeyUp(KeyCode.RightArrow))
@@ -159,7 +160,7 @@ public class Player1Controller : MonoBehaviour {
             {
                 if (prepBlastVal <= 15)
                 {
-                    prepBlastVal = prepBlastVal + 0.1f;
+                    prepBlastVal = prepBlastVal + 0.15f;
                 }
             }
             else if (Input.GetKeyUp(KeyCode.UpArrow))
